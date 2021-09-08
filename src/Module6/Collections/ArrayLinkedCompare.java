@@ -1,69 +1,41 @@
 package Module6.Collections;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedList;
 
 public class ArrayLinkedCompare {
+    public static final long size = 100_000;
+
     public static void main(String[] args) {
+
         ArrayList<Number> arrayList = new ArrayList<>();
         LinkedList<Number> linkedList = new LinkedList<>();
 
-        /*Beginning*/
-        System.out.println("Beginning");
+        ArrayLinkedCompare arr = new ArrayLinkedCompare();
 
-        //Arraylist
-        long start = System.nanoTime();
-        for (long i = 0; i <100_000 ; i++) {
-            arrayList.add(0,1);
-        }
-        long end = System.nanoTime();
-        System.out.println((end-start)/1000000);
+        //Arraylist timing
+        long result = arr.compute(arrayList,1,size);
+        System.out.println(result);
 
-        //LinkedList
-        long start2 = System.nanoTime();
-        for (long i = 0; i <100_000 ; i++) {
-            linkedList.add(2);
-        }
-        long end2 = System.nanoTime();
-        System.out.println((end2-start2)/1000000);
+        //Linked list timing
+        long result2 = arr.compute(linkedList,2,size);
+        System.out.println(result2);
 
-        /*Middle*/
-        System.out.println("Middle");
-        //ArrayList
-        long start3 = System.nanoTime();
-        for (long i = 0; i <100_000 ; i++) {
-            arrayList.add(100_000/2,3);
-        }
-        long end3 = System.nanoTime();
-        System.out.println((end3-start3)/1000000);
-
-        //LinkedList
-        long start4 = System.nanoTime();
-        for (long i = 0; i <100_000 ; i++) {
-            linkedList.add(100_000/2,3);
-        }
-        long end4 = System.nanoTime();
-        System.out.println((end4-start4)/1000000);
-
-        /*End*/
-        System.out.println("End");
-        //ArrayList
-        long start5 = System.nanoTime();
-        for (long i = 0; i <100_000 ; i++) {
-            arrayList.add(5);
-        }
-        long end5 = System.nanoTime();
-        System.out.println((end5-start5)/1000000);
-
-        //LinkedList
-        long start6 = System.nanoTime();
-        for (long i = 0; i <100_000 ; i++) {
-            linkedList.add(6);
-        }
-        long end6 = System.nanoTime();
-        System.out.println((end6-start6)/1000000);
 
 
 
     }
+
+    <T> long compute(Collection<T> collection, T element,long size){
+        long start = System.nanoTime();
+        for (long i = 0; i <size ; i++) {
+            collection.add(element);
+        }
+        long end = System.nanoTime();
+
+        return (end-start)/1000000;
+    }
+
+
 }
